@@ -37,9 +37,9 @@ void draw()
   float s2 = sin(radians(pitch));
   float c3 = cos(radians(yaw));
   float s3 = sin(radians(yaw));
-  applyMatrix( c2*c3, s1*s3+c1*c3*s2, c3*s1*s2-c1*s3, 0,
-               -s2, c1*c2, c2*s1, 0,
-               c2*s3, c1*s2*s3-c3*s1, c1*c3+s1*s2*s3, 0,
+  applyMatrix( c2*c3, -s1*s3-c1*c3*s2, c1*s3-c3*s1*s2, 0,
+               s2, c1*c2, c2*s1, 0,
+               -c2*s3, c1*s2*s3-c3*s1, c1*c3+s1*s2*s3, 0,
                0, 0, 0, 1);
 
   drawArduino();
