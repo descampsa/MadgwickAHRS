@@ -2,7 +2,6 @@
 #include <MadgwickAHRS.h>
 
 Madgwick filter;
-unsigned long microsPerReading, microsPrevious;
 float accelScale, gyroScale;
 
 void setup() {
@@ -18,10 +17,6 @@ void setup() {
   CurieIMU.setAccelerometerRange(2);
   // Set the gyroscope range to 250 degrees/second
   CurieIMU.setGyroRange(250);
-
-  // initialize variables to pace updates to correct rate
-  microsPerReading = 1000000 / 25;
-  microsPrevious = micros();
 }
 
 void loop() {
@@ -30,11 +25,9 @@ void loop() {
   float ax, ay, az;
   float gx, gy, gz;
   float roll, pitch, heading;
-  unsigned long microsNow;
 
   // check if it's time to read data and update the filter
-  microsNow = micros();
-  if (microsNow - microsPrevious >= microsPerReading) {
+  if (CurieIMU.accelDataReady() && CurieIMU.accelDataReady()) {
 
     // read raw data from CurieIMU
     CurieIMU.readMotionSensor(aix, aiy, aiz, gix, giy, giz);
@@ -60,9 +53,6 @@ void loop() {
     Serial.print(pitch);
     Serial.print(" ");
     Serial.println(roll);
-
-    // increment previous time, so we keep proper pace
-    microsPrevious = microsPrevious + microsPerReading;
   }
 }
 
