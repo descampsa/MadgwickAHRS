@@ -3,15 +3,16 @@
 
 Madgwick filter;
 float accelScale, gyroScale;
+const int IMURate=100;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(1000000);
 
   // start the IMU and filter
   CurieIMU.begin();
-  CurieIMU.setGyroRate(25);
-  CurieIMU.setAccelerometerRate(25);
-  filter.begin(25);
+  CurieIMU.setGyroRate(IMURate);
+  CurieIMU.setAccelerometerRate(IMURate);
+  filter.begin(IMURate);
 
   // Set the accelerometer range to 2G
   CurieIMU.setAccelerometerRange(2);

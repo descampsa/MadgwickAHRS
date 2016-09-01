@@ -10,12 +10,12 @@ void setup()
   size(600, 500, P3D);
 
   // if you have only ONE serial port active
-  myPort = new Serial(this, Serial.list()[0], 9600); // if you have only ONE serial port active
+  myPort = new Serial(this, Serial.list()[0], 1000000); // if you have only ONE serial port active
 
   // if you know the serial port name
-  //myPort = new Serial(this, "COM5:", 9600);                    // Windows
-  //myPort = new Serial(this, "/dev/ttyACM0", 9600);             // Linux
-  //myPort = new Serial(this, "/dev/cu.usbmodem1217321", 9600);  // Mac
+  //myPort = new Serial(this, "COM5:", 1000000);                    // Windows
+  //myPort = new Serial(this, "/dev/ttyACM0", 1000000);             // Linux
+  //myPort = new Serial(this, "/dev/cu.usbmodem1217321", 1000000);  // Mac
 
   textSize(16); // set text size
   textMode(SHAPE); // set text mode to shape
@@ -88,4 +88,3 @@ void drawArduino()
   translate(-20, 0, -180); // set position to other edge of Arduino box
   box(210, 20, 10); // draw other pin header as box
 }
-
